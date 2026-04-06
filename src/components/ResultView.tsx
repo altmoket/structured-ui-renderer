@@ -4,6 +4,7 @@ import type { Section } from "../types/sections";
  * Starter view: wired to `data` in mockData—payloads are intentionally inconsistent; 
  * many cases unhandled here.
  */
+
 export default function ResultView({ data }: { data: { title: string, sections: Section[] } }) {
   return (
     <div>
@@ -13,10 +14,9 @@ export default function ResultView({ data }: { data: { title: string, sections: 
           return <p key={i}>{s.content}</p>;
         }
         if (s.type === "list") {
-          const items = Array.isArray(s.items) ? s.items : [];          
           return (
             <ul key={i}>
-              {items.map((item: string | {text: string, meta?: string}, idx: number) => (
+              {s.items.map((item: string | {text: string, meta?: string}, idx: number) => (
                 <li key={idx}>{typeof item === "string" ? item : item.text}</li>
               ))}
             </ul>
