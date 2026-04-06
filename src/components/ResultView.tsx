@@ -1,4 +1,4 @@
-import type { Section } from "./types/sections";
+import type { Section } from "../types/sections";
 
 /** 
  * Starter view: wired to `data` in mockData—payloads are intentionally inconsistent; 

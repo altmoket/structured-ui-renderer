@@ -1,5 +1,5 @@
-import { data } from "./mockData"
-import ResultView from "./ResultView"
+import { data } from "./store/mockData"
+import ResultView from "./components/ResultView"
 import { normalizeData } from "./utils/normalize"
 
 const normalizedData = normalizeData(data)
