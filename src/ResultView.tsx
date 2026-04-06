@@ -1,5 +1,3 @@
-import React from "react";
-
 /** 
  * Starter view: wired to `data` in mockData—payloads are intentionally inconsistent; 
  * many cases unhandled here.
@@ -13,10 +11,11 @@ export default function ResultView({ data }: any) {
           return <p key={i}>{s.content}</p>;
         }
         if (s.type === "list") {
+          const items = Array.isArray(s.items) ? s.items : [];          
           return (
             <ul key={i}>
-              {s.items.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+              {items.map((item: string | {text: string, meta?: string}, idx: number) => (
+                <li key={idx}>{typeof item === "string" ? item : item.text}</li>
               ))}
             </ul>
           );
