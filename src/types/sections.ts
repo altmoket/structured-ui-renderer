@@ -6,7 +6,7 @@ export type TextSection = {
 
 export type ListSection = {
   type: "list"
-  items: Array<string | {text: string, meta?: string}> | null
+  items: Array<string | {text: string, meta?: string}>
 }
 
 export type HighlightSection = {
