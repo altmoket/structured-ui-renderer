@@ -25,22 +25,26 @@ const RenderUnknown = () => {
   return <div>Unknown section</div>;
 }
 
+const SectionRenderer = ({ section }: { section: Section }) => {
+  if (section.type === "text") {
+    return <RenderText {...section} />;
+  }
+  if (section.type === "list") {
+    return <RenderList {...section} />;
+  }
+  if (section.type === "highlight") {
+    return <RenderHighlight {...section} />;
+  }
+  return <RenderUnknown />;
+}
+
 export default function ResultView({ data }: { data: { title: string, sections: Section[] } }) {
   return (
     <div>
       <h1>{data.title}</h1>
-      {data.sections.map((s: any, i: number) => {
-        if (s.type === "text") {
-          return <RenderText key={i} {...s} />;
-        }
-        if (s.type === "list") {
-          return <RenderList key={i} {...s} />;
-        }
-        if (s.type === "highlight") {
-          return <RenderHighlight key={i} {...s} />;
-        }
-        return <RenderUnknown key={i} />;
-      })}
+      {data.sections.map((section: Section, i: number) => (
+        <SectionRenderer key={i} section={section} />
+      ))}
     </div>
   );
 }
